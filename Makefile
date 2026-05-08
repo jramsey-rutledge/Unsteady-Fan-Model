@@ -1,0 +1,428 @@
+TARGET = HW6
+SRC_FILES = main.cpp meshType.cpp volScalarField.cpp surfaceScalarField.cpp velocityField.cpp FileIO.cpp bcType.cpp Time.cpp linSysType.cpp fieldVal.cpp
+
+# NO EDITS NEEDED BELOW THIS LINE
+
+CXX = g++
+CXXFLAGS = -Wall -Wextra -Werror -pedantic-errors
+CXXFLAGS_DEBUG = -g
+CXXVERSION = -std=c++17
+
+OBJECTS = $(SRC_FILES:.cpp=.o)
+
+ifeq ($(shell echo "Windows"), "Windows")
+	TARGET := $(TARGET).exe
+	DEL = del
+	Q =
+else
+	DEL = rm -f
+	Q = "
+endif
+
+all: $(TARGET)
+
+$(TARGET): $(OBJECTS)
+	$(CXX) -o $@ $^
+
+.cpp.o:
+	$(CXX) $(CXXFLAGS) $(CXXVERSION) $(CXXFLAGS_DEBUG) -o $@ -c $<
+
+clean:
+	$(DEL) $(TARGET) $(OBJECTS)
+
+depend:
+	@sed -i.bak '/^# DEPENDENCIES/,$$d' Makefile
+	@$(DEL) sed*
+	@echo $(Q)# DEPENDENCIES$(Q) >> Makefile
+	@$(CXX) -MM $(SRC_FILES) >> Makefile
+
+.PHONY: all clean depend
+
+# DEPENDENCIES 
+main.o: main.cpp meshType.h FileIO.h volScalarField.h bcType.h FileIO.H \
+ fieldVal.h surfaceScalarField.h velocityField.h Time.h linSysType.h \
+ eigen/Eigen/Sparse eigen/Eigen/SparseCore eigen/Eigen/Core \
+ eigen/Eigen/Version eigen/Eigen/src/Core/util/DisableStupidWarnings.h \
+ eigen/Eigen/src/Core/util/Macros.h \
+ eigen/Eigen/src/Core/util/../InternalHeaderCheck.h \
+ eigen/Eigen/src/Core/util/ConfigureVectorization.h \
+ eigen/Eigen/src/Core/util/MKL_support.h \
+ eigen/Eigen/src/Core/util/AOCL_Support.h \
+ eigen/Eigen/src/Core/util/Constants.h eigen/Eigen/src/Core/util/Meta.h \
+ eigen/Eigen/src/Core/util/Assert.h \
+ eigen/Eigen/src/Core/util/ForwardDeclarations.h \
+ eigen/Eigen/src/Core/util/StaticAssert.h \
+ eigen/Eigen/src/Core/util/XprHelper.h eigen/Eigen/src/Core/util/Memory.h \
+ eigen/Eigen/src/Core/util/IntegralConstant.h \
+ eigen/Eigen/src/Core/util/Serializer.h \
+ eigen/Eigen/src/Core/util/SymbolicIndex.h \
+ eigen/Eigen/src/Core/util/EmulateArray.h \
+ eigen/Eigen/src/Core/util/MoreMeta.h eigen/Eigen/src/Core/NumTraits.h \
+ eigen/Eigen/src/Core/./InternalHeaderCheck.h \
+ eigen/Eigen/src/Core/MathFunctions.h eigen/Eigen/src/Core/RandomImpl.h \
+ eigen/Eigen/src/Core/GenericPacketMath.h \
+ eigen/Eigen/src/Core/MathFunctionsImpl.h \
+ eigen/Eigen/src/Core/arch/Default/ConjHelper.h \
+ eigen/Eigen/src/Core/arch/Default/../../InternalHeaderCheck.h \
+ eigen/Eigen/src/Core/arch/Default/Half.h \
+ eigen/Eigen/src/Core/arch/Default/BFloat16.h \
+ eigen/Eigen/src/Core/arch/Default/GenericPacketMathFunctionsFwd.h \
+ eigen/Eigen/src/Core/arch/SSE/PacketMath.h \
+ eigen/Eigen/src/Core/arch/SSE/../../InternalHeaderCheck.h \
+ eigen/Eigen/src/Core/arch/SSE/Reductions.h \
+ eigen/Eigen/src/Core/arch/SSE/TypeCasting.h \
+ eigen/Eigen/src/Core/arch/SSE/MathFunctions.h \
+ eigen/Eigen/src/Core/arch/SSE/Complex.h \
+ eigen/Eigen/src/Core/arch/Default/Settings.h \
+ eigen/Eigen/src/Core/arch/Default/GenericPacketMathFunctions.h \
+ eigen/Eigen/src/Core/functors/TernaryFunctors.h \
+ eigen/Eigen/src/Core/functors/../InternalHeaderCheck.h \
+ eigen/Eigen/src/Core/functors/BinaryFunctors.h \
+ eigen/Eigen/src/Core/functors/UnaryFunctors.h \
+ eigen/Eigen/src/Core/functors/NullaryFunctors.h \
+ eigen/Eigen/src/Core/functors/StlFunctors.h \
+ eigen/Eigen/src/Core/functors/AssignmentFunctors.h \
+ eigen/Eigen/src/Core/util/IndexedViewHelper.h \
+ eigen/Eigen/src/Core/util/ReshapedHelper.h \
+ eigen/Eigen/src/Core/ArithmeticSequence.h eigen/Eigen/src/Core/IO.h \
+ eigen/Eigen/src/Core/DenseCoeffsBase.h eigen/Eigen/src/Core/DenseBase.h \
+ eigen/Eigen/src/Core/../plugins/CommonCwiseUnaryOps.inc \
+ eigen/Eigen/src/Core/../plugins/BlockMethods.inc \
+ eigen/Eigen/src/Core/../plugins/IndexedViewMethods.inc \
+ eigen/Eigen/src/Core/../plugins/ReshapedMethods.inc \
+ eigen/Eigen/src/Core/../plugins/ReshapedMethods.inc \
+ eigen/Eigen/src/Core/MatrixBase.h \
+ eigen/Eigen/src/Core/../plugins/CommonCwiseBinaryOps.inc \
+ eigen/Eigen/src/Core/../plugins/MatrixCwiseUnaryOps.inc \
+ eigen/Eigen/src/Core/../plugins/MatrixCwiseBinaryOps.inc \
+ eigen/Eigen/src/Core/EigenBase.h eigen/Eigen/src/Core/Product.h \
+ eigen/Eigen/src/Core/CoreEvaluators.h \
+ eigen/Eigen/src/Core/AssignEvaluator.h eigen/Eigen/src/Core/RealView.h \
+ eigen/Eigen/src/Core/Assign.h eigen/Eigen/src/Core/ArrayBase.h \
+ eigen/Eigen/src/Core/../plugins/ArrayCwiseUnaryOps.inc \
+ eigen/Eigen/src/Core/../plugins/ArrayCwiseBinaryOps.inc \
+ eigen/Eigen/src/Core/util/BlasUtil.h eigen/Eigen/src/Core/DenseStorage.h \
+ eigen/Eigen/src/Core/NestByValue.h eigen/Eigen/src/Core/ReturnByValue.h \
+ eigen/Eigen/src/Core/NoAlias.h eigen/Eigen/src/Core/PlainObjectBase.h \
+ eigen/Eigen/src/Core/Matrix.h eigen/Eigen/src/Core/Array.h \
+ eigen/Eigen/src/Core/Fill.h eigen/Eigen/src/Core/CwiseTernaryOp.h \
+ eigen/Eigen/src/Core/CwiseBinaryOp.h eigen/Eigen/src/Core/CwiseUnaryOp.h \
+ eigen/Eigen/src/Core/CwiseNullaryOp.h \
+ eigen/Eigen/src/Core/CwiseUnaryView.h \
+ eigen/Eigen/src/Core/SelfCwiseBinaryOp.h \
+ eigen/Eigen/src/Core/InnerProduct.h eigen/Eigen/src/Core/Dot.h \
+ eigen/Eigen/src/Core/StableNorm.h eigen/Eigen/src/Core/Stride.h \
+ eigen/Eigen/src/Core/MapBase.h eigen/Eigen/src/Core/Map.h \
+ eigen/Eigen/src/Core/Ref.h eigen/Eigen/src/Core/Block.h \
+ eigen/Eigen/src/Core/VectorBlock.h eigen/Eigen/src/Core/IndexedView.h \
+ eigen/Eigen/src/Core/Reshaped.h eigen/Eigen/src/Core/Transpose.h \
+ eigen/Eigen/src/Core/DiagonalMatrix.h eigen/Eigen/src/Core/Diagonal.h \
+ eigen/Eigen/src/Core/DiagonalProduct.h \
+ eigen/Eigen/src/Core/SkewSymmetricMatrix3.h eigen/Eigen/src/Core/Redux.h \
+ eigen/Eigen/src/Core/Visitor.h eigen/Eigen/src/Core/FindCoeff.h \
+ eigen/Eigen/src/Core/Fuzzy.h eigen/Eigen/src/Core/Swap.h \
+ eigen/Eigen/src/Core/CommaInitializer.h \
+ eigen/Eigen/src/Core/GeneralProduct.h eigen/Eigen/src/Core/Solve.h \
+ eigen/Eigen/src/Core/Inverse.h eigen/Eigen/src/Core/SolverBase.h \
+ eigen/Eigen/src/Core/PermutationMatrix.h \
+ eigen/Eigen/src/Core/Transpositions.h \
+ eigen/Eigen/src/Core/TriangularMatrix.h \
+ eigen/Eigen/src/Core/SelfAdjointView.h \
+ eigen/Eigen/src/Core/products/GeneralBlockPanelKernel.h \
+ eigen/Eigen/src/Core/products/../InternalHeaderCheck.h \
+ eigen/Eigen/src/Core/DeviceWrapper.h \
+ eigen/Eigen/src/Core/products/Parallelizer.h \
+ eigen/Eigen/src/Core/ProductEvaluators.h \
+ eigen/Eigen/src/Core/products/GeneralMatrixVector.h \
+ eigen/Eigen/src/Core/products/GeneralMatrixMatrix.h \
+ eigen/Eigen/src/Core/SolveTriangular.h \
+ eigen/Eigen/src/Core/products/GeneralMatrixMatrixTriangular.h \
+ eigen/Eigen/src/Core/products/SelfadjointMatrixVector.h \
+ eigen/Eigen/src/Core/products/SelfadjointMatrixMatrix.h \
+ eigen/Eigen/src/Core/products/SelfadjointProduct.h \
+ eigen/Eigen/src/Core/products/SelfadjointRank2Update.h \
+ eigen/Eigen/src/Core/products/TriangularMatrixVector.h \
+ eigen/Eigen/src/Core/products/TriangularMatrixMatrix.h \
+ eigen/Eigen/src/Core/products/TriangularSolverMatrix.h \
+ eigen/Eigen/src/Core/products/TriangularSolverVector.h \
+ eigen/Eigen/src/Core/BandMatrix.h eigen/Eigen/src/Core/CoreIterators.h \
+ eigen/Eigen/src/Core/ConditionEstimator.h eigen/Eigen/src/Core/Select.h \
+ eigen/Eigen/src/Core/VectorwiseOp.h \
+ eigen/Eigen/src/Core/PartialReduxEvaluator.h \
+ eigen/Eigen/src/Core/Random.h eigen/Eigen/src/Core/Replicate.h \
+ eigen/Eigen/src/Core/Reverse.h eigen/Eigen/src/Core/ArrayWrapper.h \
+ eigen/Eigen/src/Core/StlIterators.h \
+ eigen/Eigen/src/Core/GlobalFunctions.h \
+ eigen/Eigen/src/Core/util/ReenableStupidWarnings.h \
+ eigen/Eigen/src/SparseCore/SparseUtil.h \
+ eigen/Eigen/src/SparseCore/./InternalHeaderCheck.h \
+ eigen/Eigen/src/SparseCore/SparseMatrixBase.h \
+ eigen/Eigen/src/SparseCore/../plugins/CommonCwiseUnaryOps.inc \
+ eigen/Eigen/src/SparseCore/../plugins/CommonCwiseBinaryOps.inc \
+ eigen/Eigen/src/SparseCore/../plugins/MatrixCwiseUnaryOps.inc \
+ eigen/Eigen/src/SparseCore/../plugins/MatrixCwiseBinaryOps.inc \
+ eigen/Eigen/src/SparseCore/../plugins/BlockMethods.inc \
+ eigen/Eigen/src/SparseCore/SparseAssign.h \
+ eigen/Eigen/src/SparseCore/CompressedStorage.h \
+ eigen/Eigen/src/SparseCore/AmbiVector.h \
+ eigen/Eigen/src/SparseCore/SparseCompressedBase.h \
+ eigen/Eigen/src/SparseCore/SparseMatrix.h \
+ eigen/Eigen/src/SparseCore/SparseMap.h \
+ eigen/Eigen/src/SparseCore/SparseVector.h \
+ eigen/Eigen/src/SparseCore/SparseRef.h \
+ eigen/Eigen/src/SparseCore/SparseCwiseUnaryOp.h \
+ eigen/Eigen/src/SparseCore/SparseCwiseBinaryOp.h \
+ eigen/Eigen/src/SparseCore/SparseTranspose.h \
+ eigen/Eigen/src/SparseCore/SparseBlock.h \
+ eigen/Eigen/src/SparseCore/SparseDot.h \
+ eigen/Eigen/src/SparseCore/SparseRedux.h \
+ eigen/Eigen/src/SparseCore/SparseView.h \
+ eigen/Eigen/src/SparseCore/SparseDiagonalProduct.h \
+ eigen/Eigen/src/SparseCore/ConservativeSparseSparseProduct.h \
+ eigen/Eigen/src/SparseCore/SparseSparseProductWithPruning.h \
+ eigen/Eigen/src/SparseCore/SparseProduct.h \
+ eigen/Eigen/src/SparseCore/SparseDenseProduct.h \
+ eigen/Eigen/src/SparseCore/SparseSelfAdjointView.h \
+ eigen/Eigen/src/SparseCore/SparseTriangularView.h \
+ eigen/Eigen/src/SparseCore/TriangularSolver.h \
+ eigen/Eigen/src/SparseCore/SparsePermutation.h \
+ eigen/Eigen/src/SparseCore/SparseFuzzy.h \
+ eigen/Eigen/src/SparseCore/SparseSolverBase.h \
+ eigen/Eigen/OrderingMethods eigen/Eigen/src/OrderingMethods/Amd.h \
+ eigen/Eigen/src/OrderingMethods/./InternalHeaderCheck.h \
+ eigen/Eigen/src/OrderingMethods/Ordering.h \
+ eigen/Eigen/src/OrderingMethods/Eigen_Colamd.h \
+ eigen/Eigen/SparseCholesky \
+ eigen/Eigen/src/SparseCholesky/SimplicialCholesky.h \
+ eigen/Eigen/src/SparseCholesky/./InternalHeaderCheck.h \
+ eigen/Eigen/src/SparseCholesky/SimplicialCholesky_impl.h \
+ eigen/Eigen/SparseLU eigen/Eigen/src/SparseLU/SparseLU_Structs.h \
+ eigen/Eigen/src/SparseLU/./InternalHeaderCheck.h \
+ eigen/Eigen/src/SparseLU/SparseLU_SupernodalMatrix.h \
+ eigen/Eigen/src/SparseLU/SparseLUImpl.h \
+ eigen/Eigen/src/SparseCore/SparseColEtree.h \
+ eigen/Eigen/src/SparseLU/SparseLU_Memory.h \
+ eigen/Eigen/src/SparseLU/SparseLU_heap_relax_snode.h \
+ eigen/Eigen/src/SparseLU/SparseLU_relax_snode.h \
+ eigen/Eigen/src/SparseLU/SparseLU_pivotL.h \
+ eigen/Eigen/src/SparseLU/SparseLU_panel_dfs.h \
+ eigen/Eigen/src/SparseLU/SparseLU_kernel_bmod.h \
+ eigen/Eigen/src/SparseLU/SparseLU_panel_bmod.h \
+ eigen/Eigen/src/SparseLU/SparseLU_column_dfs.h \
+ eigen/Eigen/src/SparseLU/SparseLU_column_bmod.h \
+ eigen/Eigen/src/SparseLU/SparseLU_copy_to_ucol.h \
+ eigen/Eigen/src/SparseLU/SparseLU_pruneL.h \
+ eigen/Eigen/src/SparseLU/SparseLU_Utils.h \
+ eigen/Eigen/src/SparseLU/SparseLU.h eigen/Eigen/SparseQR \
+ eigen/Eigen/src/SparseQR/SparseQR.h \
+ eigen/Eigen/src/SparseQR/./InternalHeaderCheck.h \
+ eigen/Eigen/IterativeLinearSolvers \
+ eigen/Eigen/src/IterativeLinearSolvers/SolveWithGuess.h \
+ eigen/Eigen/src/IterativeLinearSolvers/./InternalHeaderCheck.h \
+ eigen/Eigen/src/IterativeLinearSolvers/IterativeSolverBase.h \
+ eigen/Eigen/src/IterativeLinearSolvers/BasicPreconditioners.h \
+ eigen/Eigen/src/IterativeLinearSolvers/ConjugateGradient.h \
+ eigen/Eigen/src/IterativeLinearSolvers/LeastSquareConjugateGradient.h \
+ eigen/Eigen/src/IterativeLinearSolvers/BiCGSTAB.h \
+ eigen/Eigen/src/IterativeLinearSolvers/IncompleteLUT.h \
+ eigen/Eigen/src/IterativeLinearSolvers/IncompleteCholesky.h \
+ eigen/Eigen/SparseLU
+meshType.o: meshType.cpp meshType.h FileIO.h
+volScalarField.o: volScalarField.cpp meshType.h FileIO.h volScalarField.h \
+ bcType.h FileIO.H fieldVal.h Time.h
+surfaceScalarField.o: surfaceScalarField.cpp surfaceScalarField.h \
+ meshType.h FileIO.h volScalarField.h bcType.h FileIO.H fieldVal.h \
+ velocityField.h
+velocityField.o: velocityField.cpp velocityField.h FileIO.h meshType.h
+FileIO.o: FileIO.cpp FileIO.h
+bcType.o: bcType.cpp bcType.h FileIO.H
+Time.o: Time.cpp Time.h FileIO.h
+linSysType.o: linSysType.cpp linSysType.h eigen/Eigen/Sparse \
+ eigen/Eigen/SparseCore eigen/Eigen/Core eigen/Eigen/Version \
+ eigen/Eigen/src/Core/util/DisableStupidWarnings.h \
+ eigen/Eigen/src/Core/util/Macros.h \
+ eigen/Eigen/src/Core/util/../InternalHeaderCheck.h \
+ eigen/Eigen/src/Core/util/ConfigureVectorization.h \
+ eigen/Eigen/src/Core/util/MKL_support.h \
+ eigen/Eigen/src/Core/util/AOCL_Support.h \
+ eigen/Eigen/src/Core/util/Constants.h eigen/Eigen/src/Core/util/Meta.h \
+ eigen/Eigen/src/Core/util/Assert.h \
+ eigen/Eigen/src/Core/util/ForwardDeclarations.h \
+ eigen/Eigen/src/Core/util/StaticAssert.h \
+ eigen/Eigen/src/Core/util/XprHelper.h eigen/Eigen/src/Core/util/Memory.h \
+ eigen/Eigen/src/Core/util/IntegralConstant.h \
+ eigen/Eigen/src/Core/util/Serializer.h \
+ eigen/Eigen/src/Core/util/SymbolicIndex.h \
+ eigen/Eigen/src/Core/util/EmulateArray.h \
+ eigen/Eigen/src/Core/util/MoreMeta.h eigen/Eigen/src/Core/NumTraits.h \
+ eigen/Eigen/src/Core/./InternalHeaderCheck.h \
+ eigen/Eigen/src/Core/MathFunctions.h eigen/Eigen/src/Core/RandomImpl.h \
+ eigen/Eigen/src/Core/GenericPacketMath.h \
+ eigen/Eigen/src/Core/MathFunctionsImpl.h \
+ eigen/Eigen/src/Core/arch/Default/ConjHelper.h \
+ eigen/Eigen/src/Core/arch/Default/../../InternalHeaderCheck.h \
+ eigen/Eigen/src/Core/arch/Default/Half.h \
+ eigen/Eigen/src/Core/arch/Default/BFloat16.h \
+ eigen/Eigen/src/Core/arch/Default/GenericPacketMathFunctionsFwd.h \
+ eigen/Eigen/src/Core/arch/SSE/PacketMath.h \
+ eigen/Eigen/src/Core/arch/SSE/../../InternalHeaderCheck.h \
+ eigen/Eigen/src/Core/arch/SSE/Reductions.h \
+ eigen/Eigen/src/Core/arch/SSE/TypeCasting.h \
+ eigen/Eigen/src/Core/arch/SSE/MathFunctions.h \
+ eigen/Eigen/src/Core/arch/SSE/Complex.h \
+ eigen/Eigen/src/Core/arch/Default/Settings.h \
+ eigen/Eigen/src/Core/arch/Default/GenericPacketMathFunctions.h \
+ eigen/Eigen/src/Core/functors/TernaryFunctors.h \
+ eigen/Eigen/src/Core/functors/../InternalHeaderCheck.h \
+ eigen/Eigen/src/Core/functors/BinaryFunctors.h \
+ eigen/Eigen/src/Core/functors/UnaryFunctors.h \
+ eigen/Eigen/src/Core/functors/NullaryFunctors.h \
+ eigen/Eigen/src/Core/functors/StlFunctors.h \
+ eigen/Eigen/src/Core/functors/AssignmentFunctors.h \
+ eigen/Eigen/src/Core/util/IndexedViewHelper.h \
+ eigen/Eigen/src/Core/util/ReshapedHelper.h \
+ eigen/Eigen/src/Core/ArithmeticSequence.h eigen/Eigen/src/Core/IO.h \
+ eigen/Eigen/src/Core/DenseCoeffsBase.h eigen/Eigen/src/Core/DenseBase.h \
+ eigen/Eigen/src/Core/../plugins/CommonCwiseUnaryOps.inc \
+ eigen/Eigen/src/Core/../plugins/BlockMethods.inc \
+ eigen/Eigen/src/Core/../plugins/IndexedViewMethods.inc \
+ eigen/Eigen/src/Core/../plugins/ReshapedMethods.inc \
+ eigen/Eigen/src/Core/../plugins/ReshapedMethods.inc \
+ eigen/Eigen/src/Core/MatrixBase.h \
+ eigen/Eigen/src/Core/../plugins/CommonCwiseBinaryOps.inc \
+ eigen/Eigen/src/Core/../plugins/MatrixCwiseUnaryOps.inc \
+ eigen/Eigen/src/Core/../plugins/MatrixCwiseBinaryOps.inc \
+ eigen/Eigen/src/Core/EigenBase.h eigen/Eigen/src/Core/Product.h \
+ eigen/Eigen/src/Core/CoreEvaluators.h \
+ eigen/Eigen/src/Core/AssignEvaluator.h eigen/Eigen/src/Core/RealView.h \
+ eigen/Eigen/src/Core/Assign.h eigen/Eigen/src/Core/ArrayBase.h \
+ eigen/Eigen/src/Core/../plugins/ArrayCwiseUnaryOps.inc \
+ eigen/Eigen/src/Core/../plugins/ArrayCwiseBinaryOps.inc \
+ eigen/Eigen/src/Core/util/BlasUtil.h eigen/Eigen/src/Core/DenseStorage.h \
+ eigen/Eigen/src/Core/NestByValue.h eigen/Eigen/src/Core/ReturnByValue.h \
+ eigen/Eigen/src/Core/NoAlias.h eigen/Eigen/src/Core/PlainObjectBase.h \
+ eigen/Eigen/src/Core/Matrix.h eigen/Eigen/src/Core/Array.h \
+ eigen/Eigen/src/Core/Fill.h eigen/Eigen/src/Core/CwiseTernaryOp.h \
+ eigen/Eigen/src/Core/CwiseBinaryOp.h eigen/Eigen/src/Core/CwiseUnaryOp.h \
+ eigen/Eigen/src/Core/CwiseNullaryOp.h \
+ eigen/Eigen/src/Core/CwiseUnaryView.h \
+ eigen/Eigen/src/Core/SelfCwiseBinaryOp.h \
+ eigen/Eigen/src/Core/InnerProduct.h eigen/Eigen/src/Core/Dot.h \
+ eigen/Eigen/src/Core/StableNorm.h eigen/Eigen/src/Core/Stride.h \
+ eigen/Eigen/src/Core/MapBase.h eigen/Eigen/src/Core/Map.h \
+ eigen/Eigen/src/Core/Ref.h eigen/Eigen/src/Core/Block.h \
+ eigen/Eigen/src/Core/VectorBlock.h eigen/Eigen/src/Core/IndexedView.h \
+ eigen/Eigen/src/Core/Reshaped.h eigen/Eigen/src/Core/Transpose.h \
+ eigen/Eigen/src/Core/DiagonalMatrix.h eigen/Eigen/src/Core/Diagonal.h \
+ eigen/Eigen/src/Core/DiagonalProduct.h \
+ eigen/Eigen/src/Core/SkewSymmetricMatrix3.h eigen/Eigen/src/Core/Redux.h \
+ eigen/Eigen/src/Core/Visitor.h eigen/Eigen/src/Core/FindCoeff.h \
+ eigen/Eigen/src/Core/Fuzzy.h eigen/Eigen/src/Core/Swap.h \
+ eigen/Eigen/src/Core/CommaInitializer.h \
+ eigen/Eigen/src/Core/GeneralProduct.h eigen/Eigen/src/Core/Solve.h \
+ eigen/Eigen/src/Core/Inverse.h eigen/Eigen/src/Core/SolverBase.h \
+ eigen/Eigen/src/Core/PermutationMatrix.h \
+ eigen/Eigen/src/Core/Transpositions.h \
+ eigen/Eigen/src/Core/TriangularMatrix.h \
+ eigen/Eigen/src/Core/SelfAdjointView.h \
+ eigen/Eigen/src/Core/products/GeneralBlockPanelKernel.h \
+ eigen/Eigen/src/Core/products/../InternalHeaderCheck.h \
+ eigen/Eigen/src/Core/DeviceWrapper.h \
+ eigen/Eigen/src/Core/products/Parallelizer.h \
+ eigen/Eigen/src/Core/ProductEvaluators.h \
+ eigen/Eigen/src/Core/products/GeneralMatrixVector.h \
+ eigen/Eigen/src/Core/products/GeneralMatrixMatrix.h \
+ eigen/Eigen/src/Core/SolveTriangular.h \
+ eigen/Eigen/src/Core/products/GeneralMatrixMatrixTriangular.h \
+ eigen/Eigen/src/Core/products/SelfadjointMatrixVector.h \
+ eigen/Eigen/src/Core/products/SelfadjointMatrixMatrix.h \
+ eigen/Eigen/src/Core/products/SelfadjointProduct.h \
+ eigen/Eigen/src/Core/products/SelfadjointRank2Update.h \
+ eigen/Eigen/src/Core/products/TriangularMatrixVector.h \
+ eigen/Eigen/src/Core/products/TriangularMatrixMatrix.h \
+ eigen/Eigen/src/Core/products/TriangularSolverMatrix.h \
+ eigen/Eigen/src/Core/products/TriangularSolverVector.h \
+ eigen/Eigen/src/Core/BandMatrix.h eigen/Eigen/src/Core/CoreIterators.h \
+ eigen/Eigen/src/Core/ConditionEstimator.h eigen/Eigen/src/Core/Select.h \
+ eigen/Eigen/src/Core/VectorwiseOp.h \
+ eigen/Eigen/src/Core/PartialReduxEvaluator.h \
+ eigen/Eigen/src/Core/Random.h eigen/Eigen/src/Core/Replicate.h \
+ eigen/Eigen/src/Core/Reverse.h eigen/Eigen/src/Core/ArrayWrapper.h \
+ eigen/Eigen/src/Core/StlIterators.h \
+ eigen/Eigen/src/Core/GlobalFunctions.h \
+ eigen/Eigen/src/Core/util/ReenableStupidWarnings.h \
+ eigen/Eigen/src/SparseCore/SparseUtil.h \
+ eigen/Eigen/src/SparseCore/./InternalHeaderCheck.h \
+ eigen/Eigen/src/SparseCore/SparseMatrixBase.h \
+ eigen/Eigen/src/SparseCore/../plugins/CommonCwiseUnaryOps.inc \
+ eigen/Eigen/src/SparseCore/../plugins/CommonCwiseBinaryOps.inc \
+ eigen/Eigen/src/SparseCore/../plugins/MatrixCwiseUnaryOps.inc \
+ eigen/Eigen/src/SparseCore/../plugins/MatrixCwiseBinaryOps.inc \
+ eigen/Eigen/src/SparseCore/../plugins/BlockMethods.inc \
+ eigen/Eigen/src/SparseCore/SparseAssign.h \
+ eigen/Eigen/src/SparseCore/CompressedStorage.h \
+ eigen/Eigen/src/SparseCore/AmbiVector.h \
+ eigen/Eigen/src/SparseCore/SparseCompressedBase.h \
+ eigen/Eigen/src/SparseCore/SparseMatrix.h \
+ eigen/Eigen/src/SparseCore/SparseMap.h \
+ eigen/Eigen/src/SparseCore/SparseVector.h \
+ eigen/Eigen/src/SparseCore/SparseRef.h \
+ eigen/Eigen/src/SparseCore/SparseCwiseUnaryOp.h \
+ eigen/Eigen/src/SparseCore/SparseCwiseBinaryOp.h \
+ eigen/Eigen/src/SparseCore/SparseTranspose.h \
+ eigen/Eigen/src/SparseCore/SparseBlock.h \
+ eigen/Eigen/src/SparseCore/SparseDot.h \
+ eigen/Eigen/src/SparseCore/SparseRedux.h \
+ eigen/Eigen/src/SparseCore/SparseView.h \
+ eigen/Eigen/src/SparseCore/SparseDiagonalProduct.h \
+ eigen/Eigen/src/SparseCore/ConservativeSparseSparseProduct.h \
+ eigen/Eigen/src/SparseCore/SparseSparseProductWithPruning.h \
+ eigen/Eigen/src/SparseCore/SparseProduct.h \
+ eigen/Eigen/src/SparseCore/SparseDenseProduct.h \
+ eigen/Eigen/src/SparseCore/SparseSelfAdjointView.h \
+ eigen/Eigen/src/SparseCore/SparseTriangularView.h \
+ eigen/Eigen/src/SparseCore/TriangularSolver.h \
+ eigen/Eigen/src/SparseCore/SparsePermutation.h \
+ eigen/Eigen/src/SparseCore/SparseFuzzy.h \
+ eigen/Eigen/src/SparseCore/SparseSolverBase.h \
+ eigen/Eigen/OrderingMethods eigen/Eigen/src/OrderingMethods/Amd.h \
+ eigen/Eigen/src/OrderingMethods/./InternalHeaderCheck.h \
+ eigen/Eigen/src/OrderingMethods/Ordering.h \
+ eigen/Eigen/src/OrderingMethods/Eigen_Colamd.h \
+ eigen/Eigen/SparseCholesky \
+ eigen/Eigen/src/SparseCholesky/SimplicialCholesky.h \
+ eigen/Eigen/src/SparseCholesky/./InternalHeaderCheck.h \
+ eigen/Eigen/src/SparseCholesky/SimplicialCholesky_impl.h \
+ eigen/Eigen/SparseLU eigen/Eigen/src/SparseLU/SparseLU_Structs.h \
+ eigen/Eigen/src/SparseLU/./InternalHeaderCheck.h \
+ eigen/Eigen/src/SparseLU/SparseLU_SupernodalMatrix.h \
+ eigen/Eigen/src/SparseLU/SparseLUImpl.h \
+ eigen/Eigen/src/SparseCore/SparseColEtree.h \
+ eigen/Eigen/src/SparseLU/SparseLU_Memory.h \
+ eigen/Eigen/src/SparseLU/SparseLU_heap_relax_snode.h \
+ eigen/Eigen/src/SparseLU/SparseLU_relax_snode.h \
+ eigen/Eigen/src/SparseLU/SparseLU_pivotL.h \
+ eigen/Eigen/src/SparseLU/SparseLU_panel_dfs.h \
+ eigen/Eigen/src/SparseLU/SparseLU_kernel_bmod.h \
+ eigen/Eigen/src/SparseLU/SparseLU_panel_bmod.h \
+ eigen/Eigen/src/SparseLU/SparseLU_column_dfs.h \
+ eigen/Eigen/src/SparseLU/SparseLU_column_bmod.h \
+ eigen/Eigen/src/SparseLU/SparseLU_copy_to_ucol.h \
+ eigen/Eigen/src/SparseLU/SparseLU_pruneL.h \
+ eigen/Eigen/src/SparseLU/SparseLU_Utils.h \
+ eigen/Eigen/src/SparseLU/SparseLU.h eigen/Eigen/SparseQR \
+ eigen/Eigen/src/SparseQR/SparseQR.h \
+ eigen/Eigen/src/SparseQR/./InternalHeaderCheck.h \
+ eigen/Eigen/IterativeLinearSolvers \
+ eigen/Eigen/src/IterativeLinearSolvers/SolveWithGuess.h \
+ eigen/Eigen/src/IterativeLinearSolvers/./InternalHeaderCheck.h \
+ eigen/Eigen/src/IterativeLinearSolvers/IterativeSolverBase.h \
+ eigen/Eigen/src/IterativeLinearSolvers/BasicPreconditioners.h \
+ eigen/Eigen/src/IterativeLinearSolvers/ConjugateGradient.h \
+ eigen/Eigen/src/IterativeLinearSolvers/LeastSquareConjugateGradient.h \
+ eigen/Eigen/src/IterativeLinearSolvers/BiCGSTAB.h \
+ eigen/Eigen/src/IterativeLinearSolvers/IncompleteLUT.h \
+ eigen/Eigen/src/IterativeLinearSolvers/IncompleteCholesky.h \
+ eigen/Eigen/SparseLU meshType.h FileIO.h surfaceScalarField.h \
+ volScalarField.h bcType.h FileIO.H fieldVal.h velocityField.h Time.h
+fieldVal.o: fieldVal.cpp fieldVal.h

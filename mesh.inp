@@ -1,0 +1,4 @@
+64;   Nx (Number of cell columns)
+64;   Ny (Number of cell rows)
+1.0;        Lx (x domain length)
+1.0;        Ly (y domain length)
