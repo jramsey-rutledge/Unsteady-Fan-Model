@@ -96,27 +96,27 @@ Edit the .inp files in `input/` to change the spatial domain, temporal domain, f
 
 ```
 Unsteady-Fan-MOdel/
-├── src/                      # Source and header files
+├── src/                      # Source and Header Files
 │   ├── main.cpp
-│   ├── linSysType.{cpp,h}           # Linear solver
-│   ├── meshType.{cpp,h}             # Spatial  mesh
-│   ├── simTime.{cpp,h}              # Time stepping  
+│   ├── linSysType.{cpp,h}           # Linear Solver
+│   ├── meshType.{cpp,h}             # Spatial Mesh
+│   ├── simTime.{cpp,h}              # Time Stepping  
 │   ├── volScalarField.{cpp,h}       # Temperature Field
 │   ├── bcType.{cpp,h}               # Boundary Conditions
-│   ├── fieldVal.{cpp,h}             # Helper structure for Temperature Field
+│   ├── fieldVal.{cpp,h}             # Helper Structure for Temperature Field
 │   ├── surfaceScalarField.{cpp,h}   # Flux
 │   ├── velocityField.{cpp,h}        # Fan
-│   └── FileIO.{cpp,h}               # Helper structure for reading inputs
+│   └── FileIO.{cpp,h}               # Helper Structure for Reading Inputs
 ├── input/                    # Configuration files
-│   ├── controlDict.inp              # Temporal parameters
-│   ├── Fan.inp                      # Fan parameters
-│   ├── mesh.inp                     # Spatial parameters
+│   ├── controlDict.inp              # Temporal Parameters
+│   ├── Fan.inp                      # Fan Parameters
+│   ├── mesh.inp                     # Spatial Parameters
 │   └── T.inp                        # Physical Properties
 ├── output/                   # Results and Post-Processing Scripts
 │   └── SurfacePlot.m                # Animates Temperature Field in the Room
 ├── tests/                  # Verification Methods
-├── makefile                 # Build configuration
-└──README.md                 # This file
+│   ├── spatialConvergence.m         # Spatial Convergence Error Plot Script
+│   └── temporalConvergence.m        # Temporal Convergence Error Plot Script
+├── makefile                 # Build Configuration
+└──README.md                 # This File
 ```
-
-## References
