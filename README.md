@@ -21,7 +21,7 @@ The fan is modeled using an incompressible velocity field described as
 
 $$
 \begin{equation}
-u(x,y) = -\frac{A}{b_yL_y}\sin{\left(\frac{2\pi x}{b_xL_x}\right)}\cos{\left(\frac{2\pi y}{b_yL_y}\right)} m/s\\
+u(x,y) = -\frac{A}{b_yL_y}\sin{\left(\frac{2\pi x}{b_xL_x}\right)}\cos{\left(\frac{2\pi y}{b_yL_y}\right)} m/s \\
 v(x,y) = \frac{A}{b_xL_x}\cos{\left(\frac{2\pi x}{b_xL_x}\right)}\sin{\left(\frac{2\pi y}{b_yL_y}\right)} m/s,
 \end{equation}
 $$
