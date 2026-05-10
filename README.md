@@ -41,7 +41,7 @@ The governing equations are discretized using the finite-volume method on a stru
 
 As for the temporal discretization, an implicit first-order backward Euler method is used,
 
-$$ \frac{\partial T}{\partial t} \approx \frac{T^{n+1} - T^{n} }{\delta t}.
+$$ \frac{\partial T}{\partial t} \approx \frac{T^{n+1} - T^{n} }{\delta t}. $$
 
 This produces a sparse linear system at each timestep,
 
