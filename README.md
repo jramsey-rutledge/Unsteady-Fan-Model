@@ -11,7 +11,9 @@ This code solves the unsteady advection-diffusion equations for a room with a fa
 ## Physics and Mathematical Model
 
 ### Governing Equations
-
+The temperature $T(x,y)$ satisfies the steady advection-diffusion equation written in integral form, 
+$$\int_{CS} (\rho c_{p} \vec{u} T) \cdot \vec{n} dA = \int_{CS} k (\nabla T \cdot \vec{n}) dA + \int_{CV} f dV,$$
+where $\rho$, $c_p$, and $k$ are the density, specific heat, and theraml conductivity of air, which we assume are constants. The source term $f$ is included for verification purposes and to model a heater. 
 
 ### Initial and Boundary Conditions
 
