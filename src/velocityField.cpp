@@ -10,7 +10,7 @@ using namespace std;
 
 velocityField::velocityField( const meshType& Mesh ) {
     ifstream infile;
-    infile.open("Fan.inp");
+    infile.open("input/Fan.inp");
 
     if (!infile) {
         std::cout << "Error opening File\n";

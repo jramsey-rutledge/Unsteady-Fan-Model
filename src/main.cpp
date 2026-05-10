@@ -20,6 +20,26 @@
 
 using namespace std;
 
+// Function for Convergence Testing 
+double computeError(const meshType& Mesh, const volScalarField& T) {
+    double error = 0.0;
+
+    for (int i = 1; i <= Mesh.Nx; i++) {
+        for (int j = 1; j <= Mesh.Ny; j++) {
+
+            double x = Mesh.xc[i];
+            double y = Mesh.yc[j];
+
+            double exact = cos(x)*cos(y);
+            double num  = T.t1.get(i,j);
+
+            error = max(error, abs(exact-num));
+        }
+    }
+
+    return error;
+}
+
 // Main Function
 int main() {
 
@@ -55,6 +75,7 @@ int main() {
     // ---------- the time loop - - - - - - - - -//
     double res = 1;
 
+    // for verification, change to while (res > 0.0001)
     while ( runTime.run() ) {
 
         // advance time
@@ -97,6 +118,12 @@ int main() {
             T.Save(runTime.time);
         }
     }
+
+    // output error value
+    // double error = computeError(Mesh,T);
+    // std::ofstream file("error_vs_time.dat", std::ios::app);
+    // file << runTime.dt << " " << error << std::endl;
+    // file.close();
 
     return 0;
 }

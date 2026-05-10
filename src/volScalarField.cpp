@@ -18,14 +18,14 @@ using namespace std;
 
 void volScalarField::read(){
     std :: ifstream file ;
-    file.open (name + ".inp");
+    file.open ("input/" + name + ".inp");
     rho = readDouble ( file );
     cp = readDouble ( file );
     k = readDouble ( file );
     file.close ();
 
     std::ifstream file2; 
-    file2.open("controlDict.inp");
+    file2.open("input/controlDict.inp");
     readDouble(file2); // disregard starttime
     dt = readDouble(file2);
     file2.close();

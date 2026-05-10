@@ -11,7 +11,7 @@ using namespace std;
 
 void meshType::read(){
     ifstream infile;
-    infile.open("mesh.inp");
+    infile.open("input/mesh.inp");
 
     if (!infile) {
         cout << "Error opening File\n";

@@ -15,7 +15,7 @@ simTime::simTime(){
 void simTime::read () {
     // read startTime , dt , Nt , and writeInterval from controlDict.inp
     std::ifstream infile;
-    infile.open("controlDict.inp");
+    infile.open("input/controlDict.inp");
 
     if (!infile) {
         std::cout << "Error opening File\n";
