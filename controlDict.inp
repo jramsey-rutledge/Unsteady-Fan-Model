@@ -1,4 +1,0 @@
-0.0; startTime ( initial time s )
-0.05; dt ( time step size )
-400; Nt ( total number of steps )
-10.0; writeInterval ( output frequency 1/s )
