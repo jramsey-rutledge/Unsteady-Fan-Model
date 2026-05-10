@@ -1,6 +1,6 @@
 CXX = g++
 CXXFLAGS = -std=c++17 -O2 -Wall -Isrc
-EIGEN_INCLUDE = -I"C:\Users\jenna\OneDrive\Documents\MEGN651\eigen"
+EIGEN_INCLUDE = -I"C:\Users\jenna\OneDrive\Documents\MEGN651\eigen" # change to your path to eigen
 
 
 TARGET = solver
