@@ -84,7 +84,7 @@ make build
 make clean
 
 # Build and run in one step
-make all
+make
 ```
 
 ### Adjusting the Simulation
